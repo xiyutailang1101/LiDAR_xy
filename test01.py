@@ -42,7 +42,7 @@ for dataset, hatch, color in zip(["G111", "G112", "G113"], hatches, colors):
     # csv reader is an iterable object, reading a line of a text on each iteration
     # and returning another object that 'iterates over' the line split into tokens
     x, y = [], []
-    with open(boundsFn, 'rb') as fin:
+    with open(boundsFn) as fin:
         reader = csv.reader(fin, delimiter=' ', skipinitialspace=True)
         for line in reader:
             x.append(float(line[0]))

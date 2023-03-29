@@ -1,17 +1,20 @@
+import opals
 from opals import Import, Bounds
 import os, csv
-import matplotlib as mp1
+# By convention, we abbreviate matplotlib as mpl
+import matplotlib as mpl
 # select the graphics kit to use
-mp1.use("TkAgg")
+mpl.use("TkAgg")
 # import does not work recursively,
+# so we need to import the sub-module, too.
+# By convention, we name it plt.
 import matplotlib.pyplot as plt
-import opals
-import numpy
 
 # change the working to the OPALS demo directory
 os.chdir(os.path.join(opals.__path__[0], r'..\demo'))
+
 hatches = ["/", "\\", "|", "-", "+", "x", "o"]
-colors = ["b", "g",  "r", "c", "m", "y", "k"]
+colors = ["b", "g", "r", "c", "m", "y", "k"]
 
 # loop 3 lists at the same time
 # built in function 'zip' returns a list of tuples
@@ -27,14 +30,14 @@ for dataset, hatch, color in zip(["G111", "G112", "G113"], hatches, colors):
     imp.inFile = dataFn
     imp.run()
 
-    bns = Bounds.Bounds()
-    bns.inFile = odmFn
+    bnds = Bounds.Bounds()
+    bnds.inFile = odmFn
 
     # set the boundary type to result in a tight fit
     # use the enumerator 'alphaShape' of the enumeration 'BoundaryType'
-    bns.boundsType = opals.Types.BoundaryType.alphaShape
-    bns.outFile = boundsFn
-    bns.run()
+    bnds.boundsType = opals.Types.BoundaryType.alphaShape
+    bnds.outFile = boundsFn
+    bnds.run()
 
     # csv reader is an iterable object, reading a line of a text on each iteration
     # and returning another object that 'iterates over' the line split into tokens
